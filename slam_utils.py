@@ -25,7 +25,7 @@ def tree_to_global_xy(trees, ekf_state):
     phi = ekf_state["x"][2]
     mu = ekf_state["x"][0:2]
 
-    return np.reshape(mu, (2,1)) + np.vstack(( trees[:,0]*np.cos(phi+trees[:,1]),
+    return np.reshape(mu, (2,1)) + np.vstack(( trees[:,0]*np.cos(phi+trees[:,1]), 
                                                 trees[:,0]*np.sin(phi+trees[:,1])))
 
 def plot_tree_measurements(trees, assoc, ekf_state, plot):
@@ -95,7 +95,7 @@ def plot_map(ekf_state, plot, params):
                 plot["map_covariances"].append(plot["axis"].plot())
 
             plot["map_covariances"][i].setData(circ, pen='b')
-
+        
 
 def get_covariance_ellipse_points(mu, P, base_circ=[]):
 
@@ -126,7 +126,7 @@ def convert_to_global_xy(ekf_state, scan, params):
 
     rb = rb[ rb[:,0] < params["max_laser_range"], : ]
 
-    xy = np.reshape(mu, (2,1)) + np.vstack(( rb[:,0]*np.cos(phi+rb[:,1]),
+    xy = np.reshape(mu, (2,1)) + np.vstack(( rb[:,0]*np.cos(phi+rb[:,1]), 
                                                 rb[:,0]*np.sin(phi+rb[:,1])))
 
     return xy
@@ -170,7 +170,6 @@ def plot_state(ekf_state, plot, params):
     plot_map(ekf_state, plot, params)
     plot_robot(ekf_state, plot)
     plot_covariance(ekf_state, plot)
-
 
 def do_plot(xhist, ekf_state, trees, scan, assoc, plot, params):
     plot_trajectory(xhist, plot)
